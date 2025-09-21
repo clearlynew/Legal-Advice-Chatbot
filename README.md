@@ -1,18 +1,21 @@
-Legali - Legal Advice Chatbot (Template/Showcase)
+# Legali - AI Legal Assistant ⚖️
 
-Legali is an AI-powered legal assistant that allows users to ask legal questions and optionally upload documents (PDF, TXT, images).
+Legali is an AI-powered legal assistant that lets users ask legal questions and upload relevant documents (PDFs, TXT files, and images). This project is a **template and showcase** designed to demonstrate the code structure and workflow of such an application. It's a starting point for building your own legal AI chatbot.
 
-Note: This repo is a template/showcase. Large datasets and vectorstore files are excluded. It demonstrates code structure and workflow.
+***Note: Large datasets and vector store files are excluded from this repository to keep it lightweight.***
 
-Features
+---
 
-AI-powered chat interface for legal questions
+## ✨ Features
 
-Handles multiple chat sessions
+* **AI-Powered Chat:** An interactive chat interface for legal queries.
+* **Multi-Session Support:** Manages multiple, independent chat sessions.
+* **File Uploads:** Supports PDFs, TXT files, and images for context.
+* **Modular Design:** Easily swap out the LLM, embedding model, or file-processing logic to suit your needs.
 
-File upload support (PDF, TXT, images) with text extraction (OCR optional)
+---
 
-Modular code: easy to replace LLM, embeddings, or file-processing logic
+## 📁 Project Structure
 
 File Structure
 Legali/
@@ -28,70 +31,62 @@ Legali/
 ├─ .gitignore             # Ignores large files & environment configs
 └─ README.md              # This file
 
-How the Code Works
+---
 
-app.py – Streamlit interface
+## ⚙️ How It Works
 
-Handles user input and file uploads
+* `app.py`: This is the Streamlit interface. It handles user input, manages file uploads, and maintains chat history. It sends the user's question and relevant document context to the underlying AI model.
+* `Script/load.py`: This script is responsible for loading documents and extracting their text. It uses **PyPDF2** and optionally **Tesseract** for OCR. You can modify it to support additional file formats.
+* `Script/preprocess.py`: This module handles text cleaning and preparation, such as sanitization or splitting the text into smaller chunks for embedding.
+* `Script/query.py`: This is where the magic happens. It takes the processed text and the user's question and sends them to the AI model. The current template uses `LLMChain` from **LangChain**, but you can easily replace it with any other LLM integration.
 
-Maintains chat sessions
+---
 
-Sends user questions + context to LLM
+## 🚀 Installation & Usage (Template Only)
 
-Script/load.py – Loads and extracts text from PDF/TXT/Image
+This repository is a template, so it won't be fully functional out of the box. You'll need to add your own data and vector store. Follow these steps to set up the project locally.
 
-Uses PyPDF2 and optional OCR (Tesseract)
+1.  **Clone the repository:**
+    ```bash
+    git clone [https://github.com/](https://github.com/)<your_username>/LegaliApp.git
+    cd LegaliApp
+    ```
 
-Can be modified for other formats
+2.  **Create and activate a virtual environment:**
+    ```bash
+    # For Windows
+    python -m venv venv
+    venv\Scripts\activate
 
-Script/preprocess.py – Cleans & preprocesses text
+    # For macOS/Linux
+    python3 -m venv venv
+    source venv/bin/activate
+    ```
 
-Sanitization, splitting, or embedding prep
+3.  **Install dependencies:**
+    ```bash
+    pip install -r requirements.txt
+    ```
 
-Script/query.py – Sends processed text + questions to AI
+4.  **Run the app (with dummy data):**
+    ```bash
+    streamlit run app.py
+    ```
+    ⚠️ **Note:** The app will not fully function without a large vector store and a rich dataset. This repository is intended as a starting point for you to build upon.
 
-Uses LLMChain (LangChain) in this template
+---
 
-Easily replaceable with other LLMs
+## 🛠️ How to Customize
 
-Script/test.py – Demonstrates module usage and example workflow
+* **Change the LLM:** Replace the placeholder LLM (`ChatGroq`) in `Script/query.py` with your preferred model (e.g., OpenAI, Gemini, etc.).
+* **Add Your Data:** Populate `Script/vectorstore/` with your own embeddings and vector store files.
+* **Expand File Support:** Modify `Script/load.py` to handle additional file types or improve the existing extraction logic.
+* **Demonstrate Functionality:** Place small, sample PDFs or text files in the `Data/` directory to showcase the app's file processing capabilities.
 
-Installation & Usage (Template Only)
-# Clone the repo
-git clone https://github.com/<username>/LegaliApp.git
-cd LegaliApp
+---
 
-# Create virtual environment
-python -m venv venv
-# Activate it
-# Windows
-venv\Scripts\activate
-# Mac/Linux
-source venv/bin/activate
+## ⚠️ Notes & Limitations
 
-# Install dependencies
-pip install -r requirements.txt
-
-# Run the app (optional, dummy data only)
-streamlit run app.py
-
-
-⚠️ The app won’t fully run without large vectorstore/data files. This repo is meant as a starting point for your own implementation.
-
-How to Customize
-
-Replace ChatGroq with any LLM you have access to
-
-Replace Script/vectorstore/* with your own embeddings/vectorstore
-
-Modify Script/load.py to support additional file types
-
-Add sample small PDFs or text files in Data/ to demonstrate functionality
-
-Notes / Limitations
-
-OCR and PDF/image extraction require Tesseract & Poppler installed locally
-
-Large files are excluded to keep repo lightweight
-
-Designed as a template, not a fully runnable production app
+* **Local Dependencies:** OCR and PDF/image extraction require `Tesseract` and `Poppler` to be installed on your local machine.
+* **Scalability:** This template is designed for demonstration purposes, not for production-level, high-traffic deployments.
+* **Excluded Files:** Large vector store and data files are excluded to keep the repository size manageable.
