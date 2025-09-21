@@ -16,7 +16,7 @@ Legali is an AI-powered legal assistant that lets users ask legal questions and 
 ---
 
 ## 📁 Project Structure
-
+```
 Legali/
 ├─ app.py                 # Main Streamlit application
 ├─ requirements.txt       # Python dependencies
@@ -29,6 +29,7 @@ Legali/
 ├─ Data/                  # Sample PDF/text files for testing
 ├─ .gitignore             # Git ignore file for large files
 └─ README.md              # This file
+```
 
 ## ⚙️ How It Works
 
